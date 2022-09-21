@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid var(--light-gray);
+  border-radius: 10px;
+  background-color: var(--main-light-color);
+}
+
+.card-icon {
+  font-size: 2.5rem !important;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 720px) {
+  .card {
+    width: 75%;
+  }
+}
