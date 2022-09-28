@@ -40,6 +40,49 @@ ul li {
 }
 
 a {
+  user-select: none;
   text-decoration: none;
   color: var(--main-dark-color);
+}
+
+.show-error {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(250, 35, 35, 0.26);
+  border-radius: 6px;
+  color: var(--main-color);
+}
+
+/* Default dashoard styles */
+
+.dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  height: calc(100vh - 56px);
+}
+
+.dashboard-sidebar-container {
+  flex: 1;
+}
+
+.dashboard-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: calc(100vh - 56px - 4rem);
+  padding: 0 0 2rem 0;
+  margin: 0 2rem;
+  gap: 2rem;
+  flex: 7;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 1250px) {
+  .dashboard-container {
+    margin: 0;
+  }
 }

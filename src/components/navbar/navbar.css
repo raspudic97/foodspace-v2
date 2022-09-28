@@ -15,6 +15,8 @@
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--main-color);
+  cursor: pointer;
+  user-select: none;
 }
 
 .navbar-right ul {
@@ -57,4 +59,64 @@
   background-color: var(--main-color);
   border-radius: 10px;
   padding: 5px;
+}
+
+.navbar-parent-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.navbar-parent-link p,
+.navbar-parent-link img {
+  user-select: none;
+}
+
+.navbar-parent-username {
+  text-transform: capitalize;
+}
+
+.navbar-parent-profile-pic {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 56px;
+  right: 2rem;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-top: 2px solid var(--main-dark-color);
+  box-shadow: var(--card-box-shadow);
+  background-color: var(--main-light-color);
+  border-radius: 0 0 6px 6px;
+}
+
+.navbar-dropdown li {
+  width: 100%;
+  margin: 0.25rem 0;
+}
+
+.navbar-dropdown li a {
+  cursor: pointer;
+  padding: 10px 15px;
+  width: 100%;
+  transition: 0.5s all linear;
+}
+
+.navbar-dropdown li a:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+  border-radius: 0 10px;
+  transition: 0.5s all linear;
 }

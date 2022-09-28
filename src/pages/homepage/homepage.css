@@ -61,6 +61,29 @@
   font-weight: 500;
 }
 
+.homepage-hero-left button:hover .arrow-icon {
+  animation: pulsandmove 1s;
+  animation-iteration-count: infinite;
+}
+
+.homepage-hero-left button:disabled {
+  cursor: default;
+  background-color: var(--light-gray);
+}
+
+.homepage-hero-left button:disabled .arrow-icon {
+  animation: none;
+}
+
+@keyframes pulsandmove {
+  0% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
+
 .homepage-hero-right {
   display: flex;
   align-items: center;

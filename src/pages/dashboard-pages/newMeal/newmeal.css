@@ -1,0 +1,59 @@
+.add-new-meal-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-direction: column;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+.add-new-meal-form input {
+  width: 80%;
+  padding: 12px 15px;
+  border-radius: 6px;
+  border: 1px solid var(--main-dark-color);
+  color: var(--main-dark-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.add-new-meal-form input:focus {
+  outline-color: var(--main-color);
+  transition: 0.25s outline-color linear;
+}
+
+.add-new-meal-form input::placeholder {
+  font-size: 0.9rem;
+}
+
+.add-new-meal-form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: none;
+  outline: none;
+  border: none;
+  color: var(--main-light-color);
+  background-color: var(--main-color);
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 0 10px;
+  width: 330px;
+  max-width: 330px;
+  margin: 1rem 0 0 0;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s all linear;
+}
+
+.add-new-meal-form button:hover {
+  border-radius: 15px 0;
+  transition: 0.5s all linear;
+}
+
+.add-new-meal-form button:disabled {
+  cursor: default;
+  background-color: var(--light-gray);
+}
