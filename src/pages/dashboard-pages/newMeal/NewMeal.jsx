@@ -3,7 +3,7 @@ import DashboardSidebar from "./../../../components/dashboard-sidebar/DashboardS
 import { useRef, useState } from "react";
 import { db, storage } from "../../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 let photoURL = "";
 
@@ -14,7 +14,6 @@ function NewMeal() {
   const mealPictureRef = useRef(null);
   const mealCategoryRef = useRef(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [isFormFilled, setIsFormFilled] = useState(false);
   const [photo, setPhoto] = useState(null);
 
   //Storage functions
