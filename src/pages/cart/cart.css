@@ -1,0 +1,123 @@
+.cart-container {
+  width: 70%;
+  min-height: calc(100vh - 56px - 4rem);
+  padding: 2rem 0 0 0;
+  margin: 0 auto;
+}
+
+.cart-column-titles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: var(--main-dark-color);
+  padding: 0 1rem;
+  color: white;
+  font-weight: 400;
+}
+
+.cart-column-titles > p {
+  flex: 1;
+}
+
+.cart-meal-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: calc(100% - 2rem - 2px);
+  padding: 0 1rem;
+  border: 1px solid var(--main-dark-color);
+}
+
+.cart-single-meal {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.cart-single-meal > div {
+  flex: 1;
+}
+
+.first-child {
+  display: flex;
+  flex: 2 !important;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-meal-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cart-meal-quantity p {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 5px 0;
+  border: 1px solid var(--main-dark-color);
+}
+
+.cart-meal-quantity span {
+  cursor: pointer;
+  padding: 0 7.5px;
+}
+
+.cart-total-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cart-total {
+  width: 200px;
+  padding: 1rem;
+  border-top: 2px solid var(--main-color);
+  margin: 2rem 0 0 0;
+}
+
+.cart-total span {
+  font-weight: 400;
+}
+
+.cart-total p {
+  font-weight: 600;
+}
+
+.cart-total button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: none;
+  outline: none;
+  border: none;
+  color: var(--main-light-color);
+  background-color: var(--main-color);
+  padding: 7.5px;
+  font-size: 1rem;
+  border-radius: 0 10px;
+  width: 100%;
+  margin: 2rem 0 0 0;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s all linear;
+}
+
+.cart-total button:hover {
+  border-radius: 10px 0;
+  transition: 0.5s all linear;
+}
+
+.cart-total button:disabled {
+  background-color: var(--light-gray);
+  cursor: default;
+}

@@ -83,12 +83,20 @@ export const AuthProvider = ({ children }) => {
         email: response.user.email,
         username: username,
         address: "",
+        profile_photo_url: "",
         orders: [],
       };
 
       const docRef = doc(db, "users", `${response.user.uid}`);
 
       await setDoc(docRef, aditionalData);
+
+      const cartRef = doc(db, "cart", `${response.user.uid}`);
+
+      await setDoc(cartRef, {
+        meals_id: [],
+        user_id: `${response.user.uid}`,
+      });
 
       if (!authError) {
         setShowModal(false);

@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar-container">
-      <div onClick={() => navigate("/")} className="navbar-left">
+      <div onClick={() => navigate("/order")} className="navbar-left">
         Foodspace
       </div>
       <div className="navbar-right">
@@ -52,7 +52,7 @@ const Navbar = () => {
                   <a href="#">Orders</a>
                 </li>
                 <li>
-                  <a href="#">Cart</a>
+                  <Link to="/cart">Cart</Link>
                 </li>
                 {userFromFirestore?.role === "admin" ? (
                   <li>

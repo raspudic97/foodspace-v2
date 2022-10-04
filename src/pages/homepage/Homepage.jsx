@@ -26,7 +26,7 @@ function Homepage() {
           </p>
           <button
             onClick={() => {
-              navigate("/meals");
+              navigate("/order");
             }}
             disabled={user ? false : true}
           >
