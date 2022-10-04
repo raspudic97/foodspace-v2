@@ -13,35 +13,35 @@ import { db } from "../../../firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 
 const columns = [
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "user", label: "User", minWidth: 100 },
+  { id: "name", label: "Name", minWidth: 170, align: "left" },
+  { id: "user", label: "User", minWidth: 100, align: "left" },
   {
     id: "address",
     label: "Address",
     minWidth: 170,
-    align: "right",
+    align: "left",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "price",
-    label: "Price",
-    minWidth: 170,
-    align: "right",
+    label: "Total",
+    minWidth: 100,
+    align: "left",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "actions",
     label: "Actions",
     minWidth: 170,
-    align: "right",
+    align: "left",
     format: (value) => value.toFixed(2),
   },
 ];
 
 const rows = [];
 
-function createData(id, photo, name, user, address, price, action) {
-  return { id, photo, name, user, address, price, action };
+function createData(id, photo, name, user, address, total, action) {
+  return { id, photo, name, user, address, total, action };
 }
 
 function Orders() {
@@ -63,7 +63,7 @@ function Orders() {
 
     const unsub = onSnapshot(colRef, (snapshot) => {
       snapshot.docs.forEach((doc) => {
-        // What to do after snapshot gets data
+        //What to do after snapshot gets data !
       });
     });
 

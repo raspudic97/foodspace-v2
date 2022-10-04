@@ -39,13 +39,10 @@ function Cart() {
     querySnapshot.forEach((doc) => {
       if (isItemInCart(doc.id)) {
         const res = doc.data();
-
         const currItem = cartItems.filter((item) => item.id === doc.id);
-
         const subtotal = res.price * currItem[0].quantity;
 
         setTotal((prev) => prev + subtotal);
-
         setRows((prev) => [
           ...prev,
           createData(
@@ -71,6 +68,7 @@ function Cart() {
       const orderData = {
         order_meals: rows,
         order_status: "pending",
+        total,
         user_id: `${user?.uid}`,
         created_at: serverTimestamp(),
       };
