@@ -39,8 +39,9 @@ function Cart() {
     querySnapshot.forEach((doc) => {
       if (isItemInCart(doc.id)) {
         const res = doc.data();
+        const saleTotal = res.sale ? parseFloat(res.sale_price) : res.price;
         const currItem = cartItems.filter((item) => item.id === doc.id);
-        const subtotal = res.price * currItem[0].quantity;
+        const subtotal = saleTotal * currItem[0].quantity;
 
         setTotal((prev) => prev + subtotal);
         setRows((prev) => [
@@ -49,7 +50,7 @@ function Cart() {
             doc.id,
             res.photo_url,
             res.name,
-            res.price,
+            saleTotal,
             currItem[0].quantity
           ),
         ]);

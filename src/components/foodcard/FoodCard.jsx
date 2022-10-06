@@ -21,10 +21,22 @@ function FoodCard({ props }) {
 
   return (
     <div className="food-card">
+      {props.sale ? (
+        <p className="sale-label">- {props.sale_percentage}%</p>
+      ) : (
+        ""
+      )}
       <img src={props.photo_url} alt="meal" />
       <h3 className="food-card-title">{props.name}</h3>
       <p className="food-card-ingredients">{props.ingredients}</p>
-      <h3 className="food-card-price">{props.price} $</h3>
+      {!props.sale ? (
+        <h3 className="food-card-price">{props.price} $</h3>
+      ) : (
+        <div className="sale-price-container">
+          <h3 className="food-card-price old-price">{props.price} $</h3>
+          <h3 className="food-card-price">{props.sale_price}$</h3>
+        </div>
+      )}
       <button
         onClick={
           isItemInCart(props.id)

@@ -77,7 +77,7 @@ function Meals() {
   const [isUploading, setIsUploading] = useState(false);
   const [rows, setRows] = useState([]);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (id) => setOpen(id);
   const handleClose = () => setOpen(false);
 
   async function getMeals() {
@@ -130,7 +130,7 @@ function Meals() {
     });
   }
 
-  async function updateMeal(id) {
+  async function updateMeal(id, meal_price) {
     const mealRef = doc(db, "meals", `${id}`);
 
     const mealName = mealNameRef.current.value;
@@ -150,19 +150,27 @@ function Meals() {
           sale_percentage: mealSalePercentage,
         }),
       ...(mealSalePercentage && {
-        sale: mealSalePercentage === 0 ? false : true,
+        sale: mealSalePercentage == 0 ? false : true,
       }),
+      ...(mealSalePercentage &&
+        mealSalePercentage !== 0 && {
+          sale_price: parseFloat(
+            parseFloat(meal_price) -
+              (parseFloat(mealSalePercentage) / 100) * parseFloat(meal_price)
+          ).toFixed(2),
+        }),
     };
 
     await updateDoc(mealRef, newMealData);
   }
 
-  async function handleUpdate(id) {
+  async function handleUpdate(id, meal_price) {
     setIsUploading(true);
     if (mealPictureRef.current.value) {
       await handleUpdatePhoto(photo, photo.name);
     }
-    await updateMeal(id);
+
+    await updateMeal(id, meal_price);
     resetForm();
     setIsUploading(false);
   }
@@ -227,12 +235,15 @@ function Meals() {
                     >
                       Delete
                     </button>
-                    <button onClick={handleOpen} className="edit-meal-btn">
+                    <button
+                      onClick={() => handleOpen(row.id)}
+                      className="edit-meal-btn"
+                    >
                       Edit
                     </button>
 
                     <Modal
-                      open={open}
+                      open={open === row.id}
                       onClose={handleClose}
                       aria-labelledby="modal-modal-title"
                       aria-describedby="modal-modal-description"
@@ -271,7 +282,10 @@ function Meals() {
                         />
                         <button
                           disabled={isUploading}
-                          onClick={() => handleUpdate(row.id)}
+                          onClick={() => {
+                            console.log(row.id, row.price);
+                            handleUpdate(row.id, row.price);
+                          }}
                         >
                           Update meal
                         </button>

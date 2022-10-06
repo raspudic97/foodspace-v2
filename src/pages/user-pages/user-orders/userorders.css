@@ -1,0 +1,10 @@
+.user-orders-container {
+  width: 100%;
+  min-height: calc(100vh - 56px - 4rem);
+  margin: 2rem 0;
+}
+
+.user-orders-title {
+  padding: 0 2rem;
+  color: var(--main-dark-color);
+}

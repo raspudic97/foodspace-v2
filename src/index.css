@@ -8,6 +8,9 @@
   --transparent-red: rgba(255, 0, 0, 0.021);
   --main-light-color: rgb(255, 255, 255);
   --card-box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  --warning: #f0ad4e;
+  --success: #5cb85c;
+  --danger: #d9534f;
 }
 
 body {
@@ -107,4 +110,37 @@ a {
   .dashboard-container {
     margin: 0;
   }
+}
+
+.pending,
+.delivering,
+.accepted,
+.declined,
+.delivered {
+  padding: 10px 5px;
+  border-radius: 6px;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 500;
+  color: var(--main-dark-color);
+}
+
+.pending {
+  border: 2px solid #f0ad4e;
+  color: var(--main-dark-color);
+}
+
+.accepted,
+.delivering {
+  border: 2px solid #5cb85c;
+}
+
+.declined {
+  border: 2px solid #d9534f;
+}
+
+.delivered {
+  background-color: white;
+  color: var(--main-dark-color);
+  border: 2px solid var(--main-dark-color);
 }

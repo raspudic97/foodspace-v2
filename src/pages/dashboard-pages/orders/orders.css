@@ -1,0 +1,51 @@
+.order-table-meals-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.total-bold-text {
+  font-weight: 600;
+}
+
+.order-table-meals-list img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.orders-actions-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.orders-actions-container button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.accept-btn {
+  background-color: var(--success);
+  color: white;
+}
+
+.decline-btn,
+.delivered-btn,
+.delivering-btn {
+  background-color: var(--danger);
+  color: white;
+}
+
+.order-status-no-action {
+  font-weight: 600;
+}

@@ -11,6 +11,7 @@ import NewMeal from "./pages/dashboard-pages/newMeal/NewMeal";
 import Order from "./pages/order/Order";
 import { CartProvider } from "./contexts/CartContext";
 import Cart from "./pages/cart/Cart";
+import UserOrders from "./pages/user-pages/user-orders/UserOrders";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Homepage />} />
             <Route path="/order" exact element={<Order />} />
+            <Route path="/user-orders" exact element={<UserOrders />} />
             <Route path="/cart" exact element={<Cart />} />
             <Route path="/dashboard">
               <Route

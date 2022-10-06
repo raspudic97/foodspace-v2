@@ -37,6 +37,7 @@ function NewMeal() {
       photo_url: photoURL,
       sale: false,
       sale_percentage: 0,
+      sale_price: 0,
     };
 
     const docRef = collection(db, "meals");
