@@ -23,7 +23,7 @@ Završeno :
  
  Mane aplikacije:
   - Homepage dashboarda nije zavrsen
-  - Homepage zamisljen za widgete sa statistikama
+  * Homepage zamisljen za widgete sa statistikama
   
   - Responzivnost nije napravljena na svim stranicama
   - Dosta stranica nije optimizirano za mobilne uredjaje
