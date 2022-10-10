@@ -31,6 +31,7 @@ function Orders() {
           total: res.total,
           created_at: orderTime,
           status: res.order_status,
+          address: res.address,
         };
 
         setRows((prev) =>
@@ -45,8 +46,6 @@ function Orders() {
   const handleAction = async (id, action) => {
     const orderRef = doc(db, "orders", `${id}`);
 
-    console.log(action);
-
     await updateDoc(orderRef, { order_status: `${action}` });
   };
 
@@ -59,6 +58,7 @@ function Orders() {
             <TableHead>
               <TableRow>
                 <TableCell align="left">Name</TableCell>
+                <TableCell align="center">Address</TableCell>
                 <TableCell align="center">Ordered At</TableCell>
                 <TableCell align="center">Total</TableCell>
                 <TableCell align="center">Status</TableCell>
@@ -80,6 +80,9 @@ function Orders() {
                     ))}
                   </TableCell>
                   <TableCell align="center">
+                    <p className="total-bold-text">{row.address}</p>
+                  </TableCell>
+                  <TableCell align="center">
                     {row.created_at.toLocaleDateString(undefined, {
                       weekday: "long",
                       year: "numeric",
@@ -89,7 +92,7 @@ function Orders() {
                     . {row.created_at.toLocaleTimeString("en-GB")}
                   </TableCell>
                   <TableCell align="center">
-                    <p className="total-bold-text">{row.total} $</p>
+                    <p className="total-bold-text">{row.total.toFixed(2)} $</p>
                   </TableCell>
                   <TableCell align="center">
                     <p className={row.status}>{row.status}</p>

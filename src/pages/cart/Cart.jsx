@@ -20,7 +20,7 @@ function createData(id, image, name, price, quantity) {
 function Cart() {
   const [rows, setRows] = useState([]);
   const [total, setTotal] = useState(0);
-  const { user } = UserAuth();
+  const { user, userFromFirestore } = UserAuth();
   const { cartItems, setCartItems, increaseQuantity, decreaseQuantity } =
     CartFunctionality();
 
@@ -71,6 +71,7 @@ function Cart() {
         order_status: "pending",
         total,
         user_id: `${user?.uid}`,
+        address: `${userFromFirestore?.address}`,
         created_at: serverTimestamp(),
       };
 
@@ -79,7 +80,7 @@ function Cart() {
         setRows([]);
         const docRef = doc(db, "cart", `${user?.uid}`);
         await updateDoc(docRef, { meals_id: [] });
-        alert("Your order is placed successfully");
+        alert("Your order has been placed successfully");
       });
     }
   };
@@ -118,11 +119,31 @@ function Cart() {
           </p>
 
           <button
-            disabled={rows.length === 0 && total === 0 ? true : false}
+            disabled={
+              rows.length === 0 ||
+              total === 0 ||
+              userFromFirestore?.address === ""
+                ? true
+                : false
+            }
             onClick={() => handleSubmitOrder()}
           >
             Proceed to checkout
           </button>
+          {rows.length === 0 ? (
+            <p className="show-error">
+              Cant proceed to checkout if you dont have any items in cart.
+            </p>
+          ) : (
+            ""
+          )}
+          {userFromFirestore?.address === "" ? (
+            <p className="show-error">
+              Make sure you set your address in "My profile" section.
+            </p>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

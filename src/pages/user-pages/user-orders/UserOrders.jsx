@@ -86,7 +86,7 @@ function Orders() {
                   . {row.created_at.toLocaleTimeString("en-GB")}
                 </TableCell>
                 <TableCell align="left">
-                  <p className="total-bold-text">{row.total} $</p>
+                  <p className="total-bold-text">{row.total.toFixed(2)} $</p>
                 </TableCell>
                 <TableCell align="left">
                   <p className={row.status}>{row.status}</p>

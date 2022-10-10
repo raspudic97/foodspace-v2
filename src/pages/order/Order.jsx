@@ -17,13 +17,15 @@ function Order() {
 
   const getCategories = async () => {
     const q = query(collection(db, "meals"));
-
+    const tempCategories = [];
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const res = { ...doc.data() };
-      if (!categories.includes(res.category, 0))
-        setCategories((prev) => [...prev, res.category]);
+      if (!tempCategories.includes(res.category.toLowerCase(), 0)) {
+        tempCategories.push(res.category.toLowerCase());
+      }
     });
+    setCategories(tempCategories);
   };
 
   const getMeals = async () => {
@@ -38,14 +40,13 @@ function Order() {
 
   return (
     <div className="order-container">
-      <div className="order-hero">This is order hero!</div>
       {categories.map((category) => {
         return (
           <div className="category-container" key={category}>
             <h3 className="category-title">{category}</h3>
             <div className="food-cards-container">
               {meals.map((meal) => {
-                if (meal.category === category) {
+                if (meal.category.toLowerCase() === category.toLowerCase()) {
                   return <FoodCard key={meal.id} props={meal} />;
                 }
               })}

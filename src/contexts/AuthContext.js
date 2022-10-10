@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     setAuthError(null);
     try {
       if (password !== confirmPassword) {
-        throw new Error("Password don't match !");
+        throw new Error("Passwords don't match !");
       }
 
       const response = await createUserWithEmailAndPassword(
@@ -116,7 +116,6 @@ export const AuthProvider = ({ children }) => {
       setAuthError(
         "Something went wrong!\n Check your account informations and try again"
       );
-      console.log(error);
     });
 
     if (!authError) {

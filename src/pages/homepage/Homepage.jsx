@@ -3,12 +3,56 @@ import DeliveryMan from "../../assets/Delivery Man.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import WhyUsCard from "../../components/whyuscard/WhyUsCard";
 import FoodCard from "../../components/foodcard/FoodCard";
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 import { UserAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+function createData(id, image, name, category, ingredients, price) {
+  return { id, image, name, category, ingredients, price };
+}
+
+let ln = 0;
 
 function Homepage() {
   const { user } = UserAuth();
   const navigate = useNavigate();
+  const [meals, setMeals] = useState([]);
+  const [random, setRandom] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      await getMeals();
+      getRandomFour();
+    })();
+  }, []);
+
+  const getMeals = async () => {
+    ln = 0;
+    const q = query(collection(db, "meals"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      ln += 1;
+      const res = { ...doc.data(), id: doc.id };
+      setMeals((prev) => [...prev, res]);
+    });
+  };
+
+  function getRandomFour() {
+    const random = [];
+    const maxLn = ln >= 4 ? 4 : ln;
+
+    while (random.length !== maxLn) {
+      const randomNumber = Math.floor(Math.random() * ln);
+      if (!random.includes(randomNumber)) {
+        random.push(randomNumber);
+      }
+    }
+
+    setRandom(random);
+  }
 
   return (
     <div className="homepage-wrapper">
@@ -62,10 +106,9 @@ function Homepage() {
         </p>
 
         <div className="food-cards">
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
+          {random.map((index) => {
+            return <FoodCard key={meals[index]?.id} props={meals[index]} />;
+          })}
         </div>
       </div>
     </div>

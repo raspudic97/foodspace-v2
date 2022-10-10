@@ -1,7 +1,6 @@
 import DashboardSidebar from "../../../components/dashboard-sidebar/DashboardSidebar";
 import "./users.css";
 import { db } from "../../../firebase";
-import { deleteUser } from "firebase/auth";
 import { useEffect, useState } from "react";
 import DefaultProfilePic from "../../../assets/default-profile-picture.png";
 import { styled } from "@mui/material/styles";
@@ -13,7 +12,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-import { collection, query, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -64,7 +63,6 @@ function Users() {
                 <StyledTableCell align="left">Username</StyledTableCell>
                 <StyledTableCell align="left">Email</StyledTableCell>
                 <StyledTableCell align="left">Address</StyledTableCell>
-                <StyledTableCell align="left">Total orders</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -84,7 +82,6 @@ function Users() {
                   <StyledTableCell align="left">{row.username}</StyledTableCell>
                   <StyledTableCell align="left">{row.email}</StyledTableCell>
                   <StyledTableCell align="left">{row.address}</StyledTableCell>
-                  <StyledTableCell align="left">150 $</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>

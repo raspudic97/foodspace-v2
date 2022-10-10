@@ -283,7 +283,6 @@ function Meals() {
                         <button
                           disabled={isUploading}
                           onClick={() => {
-                            console.log(row.id, row.price);
                             handleUpdate(row.id, row.price);
                           }}
                         >

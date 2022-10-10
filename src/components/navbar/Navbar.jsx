@@ -1,10 +1,11 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 import DefaultProfilePic from "../../assets/default-profile-picture.png";
 import Signup from "../signup/Signup";
 import Login from "../login/Login";
 import CloseIcon from "@mui/icons-material/Close";
 import { UserAuth } from "../../contexts/AuthContext";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const { modalType, setModalType } = UserAuth();
@@ -12,6 +13,7 @@ const Navbar = () => {
   const { showDropdown, setShowDropdown } = UserAuth();
   const { user, logout, userFromFirestore } = UserAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   function toggleSignUp() {
     setModalType("signup");
@@ -25,7 +27,14 @@ const Navbar = () => {
 
   return (
     <div className="navbar-container">
-      <div onClick={() => navigate("/order")} className="navbar-left">
+      <div
+        onClick={
+          location.pathname === "/order"
+            ? () => navigate("/")
+            : () => navigate("/order")
+        }
+        className="navbar-left"
+      >
         Foodspace
       </div>
       <div className="navbar-right">
@@ -35,10 +44,10 @@ const Navbar = () => {
               onClick={() => setShowDropdown((prev) => !prev)}
               className="navbar-parent-link"
             >
-              <p className="navbar-parent-username">{user.displayName}</p>
+              <p className="navbar-parent-username">{user?.displayName}</p>
               <img
                 className="navbar-parent-profile-pic"
-                src={DefaultProfilePic}
+                src={user?.photoURL ? user?.photoURL : DefaultProfilePic}
                 alt="profile"
               />
             </div>
@@ -46,7 +55,7 @@ const Navbar = () => {
             {showDropdown ? (
               <ul className="navbar-dropdown">
                 <li>
-                  <a href="#">My Profile</a>
+                  <Link to="/user-profile">My profile</Link>
                 </li>
                 <li>
                   <Link to="/user-orders">Orders</Link>
